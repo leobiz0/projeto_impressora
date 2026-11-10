@@ -27,4 +27,48 @@ public class Impressora {
         System.out.println("Erro em " + operacao + ". Código: " + retorno);
         return false;
     }
+
+    public void configurar(int tipo, String modelo, String conexao, int parametro) {
+        if (conexaoAberta) {
+            System.out.println("Feche a conexão antes de mudar a configuração.");
+            return;
+        }
+        this.tipo = tipo;
+        this.modelo = modelo;
+        this.conexao = conexao;
+        this.parametro = parametro;
+        System.out.println("Configuração salva.");
+    }
+
+    public void abrirConexao() {
+        if (conexaoAberta) {
+            System.out.println("A conexão já está aberta.");
+            return;
+        }
+        try {
+            int retorno = ImpressoraDLL.INSTANCE.AbreConexaoImpressora(tipo, modelo, conexao, parametro);
+            conexaoAberta = conferir(retorno, "Abrir conexão");
+        } catch (LinkageError e) {
+            System.out.println("Não foi possível carregar a DLL: " + e.getMessage());
+        }
+    }
+
+    public void fecharConexao() {
+        if (!conexaoAberta) {
+            System.out.println("A conexão já está fechada.");
+            return;
+        }
+        int retorno = ImpressoraDLL.INSTANCE.FechaConexaoImpressora();
+        if (conferir(retorno, "Fechar conexão")) {
+            conexaoAberta = false;
+        }
+    }
+
+    static void configurarConexao(Impressora impressora) {
+        int tipo = Entrada.lerInteiro("Tipo (1=USB, 2=Serial, 3=Rede, 4=Bluetooth): ", 1, 4);
+        String modelo = Entrada.lerTexto("Modelo (i8 ou i9): ");
+        String conexao = Entrada.lerTexto("Conexão (USB, COM2 ou IP): ");
+        int parametro = Entrada.lerInteiro("Parâmetro (0 para USB): ", 0, 999999);
+        impressora.configurar(tipo, modelo, conexao, parametro);
+    }
 }
