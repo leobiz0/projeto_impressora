@@ -1,6 +1,43 @@
 public class Main {
     public static void main(String[] args) {
+        Usuario usuario = new Usuario("admin", "1234");
+        Impressora impressora = new Impressora();
 
+        if (!fazerLogin(usuario)) {
+            return;
+        }
+
+        int opcao;
+        do {
+            mostrarMenu();
+            opcao = Entrada.lerInteiro("Escolha uma opção: ", 0, 12);
+            switch (opcao) {
+                case 1 -> Impressora.configurarConexao(impressora);
+                case 2 -> impressora.abrirConexao();
+                case 3 -> impressora.fecharConexao();
+
+                case 0 -> System.out.println("Saindo...");
+            }
+        } while (opcao != 0);
+
+        impressora.fecharConexao();
+    }
+
+    static void mostrarMenu() {
+        System.out.println("\n===== MENU IMPRESSORA ELGIN =====");
+        System.out.println("1  - Configurar conexão");
+        System.out.println("2  - Abrir conexão");
+        System.out.println("3  - Fechar conexão");
+        System.out.println("4  - Imprimir texto");
+        System.out.println("5  - Imprimir QR Code");
+        System.out.println("6  - Imprimir código de barras");
+        System.out.println("7  - Imprimir XML SAT");
+        System.out.println("8  - Imprimir XML de cancelamento SAT");
+        System.out.println("9  - Abrir gaveta");
+        System.out.println("10 - Sinal sonoro");
+        System.out.println("11 - Avançar papel");
+        System.out.println("12 - Status do papel");
+        System.out.println("0  - Sair");
     }
 
     static boolean fazerLogin(Usuario usuario) {

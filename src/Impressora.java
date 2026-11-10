@@ -64,7 +64,7 @@ public class Impressora {
         }
     }
 
-    static void configurarConexao(Impressora impressora) {
+    public static void configurarConexao(Impressora impressora) {
         int tipo = Entrada.lerInteiro("Tipo (1=USB, 2=Serial, 3=Rede, 4=Bluetooth): ", 1, 4);
         String modelo = Entrada.lerTexto("Modelo (i8 ou i9): ");
         String conexao = Entrada.lerTexto("Conexão (USB, COM2 ou IP): ");
