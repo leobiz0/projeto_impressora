@@ -71,4 +71,16 @@ public class Impressora {
         int parametro = Entrada.lerInteiro("Parâmetro (0 para USB): ", 0, 999999);
         impressora.configurar(tipo, modelo, conexao, parametro);
     }
+
+    public void imprimirTexto(String texto, int copias) {
+        for (int i = 1; i <= copias; i++) {
+            int retorno = ImpressoraDLL.INSTANCE.ImpressaoTexto(texto + "\n", 1, 0, 0);
+            if (retorno < 0) {
+                System.out.println("Erro ao imprimir a cópia " + i + ". Código: " + retorno);
+                return;
+            }
+        }
+        ImpressoraDLL.INSTANCE.AvancaPapel(3); // faz o papel sair
+        System.out.println(copias + " cópia(s) impressa(s).");
+    }
 }

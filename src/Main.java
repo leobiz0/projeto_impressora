@@ -15,6 +15,13 @@ public class Main {
                 case 1 -> Impressora.configurarConexao(impressora);
                 case 2 -> impressora.abrirConexao();
                 case 3 -> impressora.fecharConexao();
+                case 4 -> {
+                    if (impressora.verificarConexao()) {
+                        String texto = Entrada.lerTexto("Texto a imprimir: ");
+                        int copias = Entrada.lerInteiro("Quantas cópias (1 a 5)? ", 1, 5);
+                        impressora.imprimirTexto(texto, copias);
+                    }
+                }
 
                 case 0 -> System.out.println("Saindo...");
             }
