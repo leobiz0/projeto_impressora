@@ -29,6 +29,18 @@ public class Main {
                         impressora.imprimirQRCode(dados, tamanho);
                     }
                 }
+                case 6 -> {
+                    if (impressora.verificarConexao()) {
+                        System.out.println("Tipos: 2 = EAN-13 | 4 = CODE 39 | 8 = CODE 128");
+                        int tipo = Entrada.lerInteiro("Tipo do código: ", 2, 8);
+                        while (tipo != 2 && tipo != 4 && tipo != 8) {
+                            System.out.println("Tipo inválido. Escolha 2, 4 ou 8.");
+                            tipo = Entrada.lerInteiro("Tipo do código: ", 2, 8);
+                        }
+                        String dados = Entrada.lerTexto("Dados do código: ");
+                        impressora.imprimirCodigoBarras(tipo, dados);
+                    }
+                }
 
 
 

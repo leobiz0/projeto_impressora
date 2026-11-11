@@ -90,4 +90,15 @@ public class Impressora {
             ImpressoraDLL.INSTANCE.AvancaPapel(3);
         }
     }
+
+    public void imprimirCodigoBarras(int tipoCodigo, String dados) {
+        if (tipoCodigo == 8 && !dados.startsWith("{")) {
+            dados = "{A" + dados;
+        }
+        int retorno = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(tipoCodigo, dados, 100, 2, 3);
+        if (conferir(retorno, "Código de barras")) {
+            ImpressoraDLL.INSTANCE.AvancaPapel(3);
+        }
+    }
+
 }
