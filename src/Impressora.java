@@ -126,4 +126,11 @@ public class Impressora {
         }
     }
 
+    public void abrirGaveta() {
+        int retorno = ImpressoraDLL.INSTANCE.AbreGaveta(1, 5, 10);
+        conferir(retorno, "Abrir gaveta");
+    }
+
+
+
 }

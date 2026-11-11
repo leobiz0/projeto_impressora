@@ -53,6 +53,11 @@ public class Main {
                         impressora.imprimirXmlCancelamento(arquivo.isBlank() ? "CANC_SAT.xml" : arquivo);
                     }
                 }
+                case 9 -> {
+                    if (impressora.verificarConexao()) {
+                        impressora.abrirGaveta();
+                    }
+                }
 
 
                 case 0 -> System.out.println("Saindo...");
