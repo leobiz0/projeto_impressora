@@ -83,4 +83,11 @@ public class Impressora {
         ImpressoraDLL.INSTANCE.AvancaPapel(3); // faz o papel sair
         System.out.println(copias + " cópia(s) impressa(s).");
     }
+
+    public void imprimirQRCode(String dados, int tamanho) {
+        int retorno = ImpressoraDLL.INSTANCE.ImpressaoQRCode(dados, tamanho, 2);
+        if (conferir(retorno, "QR Code")) {
+            ImpressoraDLL.INSTANCE.AvancaPapel(3);
+        }
+    }
 }
