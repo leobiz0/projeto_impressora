@@ -70,8 +70,11 @@ public class Main {
                         impressora.avancarPapel(linhas);
                     }
                 }
-
-
+                case 12 -> {
+                    if (impressora.verificarConexao()) {
+                        impressora.verificarPapel();
+                    }
+                }
                 case 0 -> System.out.println("Saindo...");
             }
         } while (opcao != 0);

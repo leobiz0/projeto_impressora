@@ -132,14 +132,22 @@ public class Impressora {
     }
 
     public void sinalSonoro(int quantidade) {
-        public void sinalSonoro(int quantidade) {
             int retorno = ImpressoraDLL.INSTANCE.SinalSonoro(quantidade, 50, 5);
             conferir(retorno, "Sinal sonoro");
-        }
     }
 
     public void avancarPapel(int linhas) {
         int retorno = ImpressoraDLL.INSTANCE.AvancaPapel(linhas);
         conferir(retorno, "Avançar papel");
+    }
+
+    public void verificarPapel() {
+        int retorno = ImpressoraDLL.INSTANCE.StatusImpressora(3);
+        switch (retorno) {
+            case 5 -> System.out.println("Papel OK.");
+            case 6 -> System.out.println("Papel acabando.");
+            case 7 -> System.out.println("Sem papel!");
+            default -> System.out.println("Não foi possível ler o status. Código: " + retorno);
+        }
     }
 }
