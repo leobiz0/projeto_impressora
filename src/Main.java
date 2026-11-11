@@ -64,7 +64,12 @@ public class Main {
                         impressora.sinalSonoro(qtd);
                     }
                 }
-
+                case 11 -> {
+                    if (impressora.verificarConexao()) {
+                        int linhas = Entrada.lerInteiro("Quantas linhas (1 a 10)? ", 1, 10);
+                        impressora.avancarPapel(linhas);
+                    }
+                }
 
 
                 case 0 -> System.out.println("Saindo...");

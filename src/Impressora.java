@@ -138,5 +138,8 @@ public class Impressora {
         }
     }
 
-
+    public void avancarPapel(int linhas) {
+        int retorno = ImpressoraDLL.INSTANCE.AvancaPapel(linhas);
+        conferir(retorno, "Avançar papel");
+    }
 }
