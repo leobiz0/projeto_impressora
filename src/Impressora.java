@@ -131,6 +131,12 @@ public class Impressora {
         conferir(retorno, "Abrir gaveta");
     }
 
+    public void sinalSonoro(int quantidade) {
+        public void sinalSonoro(int quantidade) {
+            int retorno = ImpressoraDLL.INSTANCE.SinalSonoro(quantidade, 50, 5);
+            conferir(retorno, "Sinal sonoro");
+        }
+    }
 
 
 }

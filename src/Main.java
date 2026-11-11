@@ -58,6 +58,13 @@ public class Main {
                         impressora.abrirGaveta();
                     }
                 }
+                case 10 -> {
+                    if (impressora.verificarConexao()) {
+                        int qtd = Entrada.lerInteiro("Quantos bips (1 a 63)? ", 1, 63);
+                        impressora.sinalSonoro(qtd);
+                    }
+                }
+
 
 
                 case 0 -> System.out.println("Saindo...");
