@@ -10,7 +10,7 @@ public class Impressora {
     private int parametro = 0;
     private boolean conexaoAberta = false;
 
-    private static final String ASS_QRCODE_CANCELAMENTO = "CFe13180314200166000166599000108160001324252883";
+    private static final String ASS_QRCODE_CANCELAMENTO = "Q5DLkpdRijIRGY6YSSNsTWK1TztHL1vD0V1Jc4spo/CEUqICEb9SFy82ym8EhBRZjbh3btsZhF+sjHqEMR159i4agru9x6KsepK/q0E2e5xlU5cv3m1woYfgHyOkWDNcSdMsS6bBh2Bpq6s89yJ9Q6qh/J8YHi306ce9Tqb/drKvN2XdE5noRSS32TAWuaQEVd7u+TrvXlOQsE3fHR1D5f1saUwQLPSdIv01NF6Ny7jZwjCwv1uNDgGZONJdlTJ6p0ccqnZvuE70aHOI09elpjEO6Cd+orI7XHHrFCwhFhAcbalc+ZfO5b/+vkyAHS6CYVFCDtYR9Hi5qgdk31v23w==";
 
     public boolean verificarConexao() {
         if (!conexaoAberta) {
@@ -116,8 +116,7 @@ public class Impressora {
     public void imprimirXmlCancelamento(String arquivo) {
         try {
             String xml = Files.readString(Path.of(arquivo));
-            String assQRCode = "Q5DLkpdRijIRGY6YSSNsTWK1TztHL1vD0V1Jc4spo/CEUqICEb9SFy82ym8EhBRZjbh3btsZhF+sjHqEMR159i4agru9x6KsepK/q0E2e5xlU5cv3m1woYfgHyOkWDNcSdMsS6bBh2Bpq6s89yJ9Q6qh/J8YHi306ce9Tqb/drKvN2XdE5noRSS32TAWuaQEVd7u+TrvXlOQsE3fHR1D5f1saUwQLPSdIv01NF6Ny7jZwjCwv1uNDgGZONJdlTJ6p0ccqnZvuE70aHOI09elpjEO6Cd+orI7XHHrFCwhFhAcbalc+ZfO5b/+vkyAHS6CYVFCDtYR9Hi5qgdk31v23w==";
-            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLCancelamentoSAT(xml, assQRCode, 0);
+            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLCancelamentoSAT(xml, ASS_QRCODE_CANCELAMENTO, 0);
             conferir(retorno, "Imprimir cancelamento SAT");
         } catch (NoSuchFileException e) {
             System.out.println("Arquivo não encontrado: " + arquivo);
@@ -132,8 +131,8 @@ public class Impressora {
     }
 
     public void sinalSonoro(int quantidade) {
-            int retorno = ImpressoraDLL.INSTANCE.SinalSonoro(quantidade, 50, 5);
-            conferir(retorno, "Sinal sonoro");
+        int retorno = ImpressoraDLL.INSTANCE.SinalSonoro(quantidade, 50, 5);
+        conferir(retorno, "Sinal sonoro");
     }
 
     public void avancarPapel(int linhas) {
