@@ -42,6 +42,13 @@ public class Main {
                     }
                 }
 
+                case 7 -> {
+                    if (impressora.verificarConexao()) {
+                        String arquivo = Entrada.lerTexto("Arquivo XML (Enter = XMLSAT.xml): ");
+                        impressora.imprimirXmlSat(arquivo.isBlank() ? "XMLSAT.xml" : arquivo);
+                    }
+                }
+
 
 
                 case 0 -> System.out.println("Saindo...");

@@ -101,4 +101,16 @@ public class Impressora {
         }
     }
 
+    public void imprimirXmlSat(String arquivo) {
+        try {
+            String conteudo = Files.readString(Path.of(arquivo));
+            int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT(conteudo, 0);
+            conferir(retorno, "Imprimir XML SAT");
+        } catch (NoSuchFileException e) {
+            System.out.println("Arquivo não encontrado: " + arquivo);
+        } catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+    }
+
 }
