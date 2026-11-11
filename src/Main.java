@@ -41,14 +41,18 @@ public class Main {
                         impressora.imprimirCodigoBarras(tipo, dados);
                     }
                 }
-
                 case 7 -> {
                     if (impressora.verificarConexao()) {
                         String arquivo = Entrada.lerTexto("Arquivo XML (Enter = XMLSAT.xml): ");
                         impressora.imprimirXmlSat(arquivo.isBlank() ? "XMLSAT.xml" : arquivo);
                     }
                 }
-
+                case 8 -> {
+                    if (impressora.verificarConexao()) {
+                        String arquivo = Entrada.lerTexto("Arquivo XML (Enter = CANC_SAT.xml): ");
+                        impressora.imprimirXmlCancelamento(arquivo.isBlank() ? "CANC_SAT.xml" : arquivo);
+                    }
+                }
 
 
                 case 0 -> System.out.println("Saindo...");
