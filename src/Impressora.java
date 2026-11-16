@@ -86,24 +86,21 @@ public class Impressora {
                 return;
             }
         }
-        ImpressoraDLL.INSTANCE.AvancaPapel(3); // faz o papel sair
+        ImpressoraDLL.INSTANCE.Corte(4);
         System.out.println(copias + " cópia(s) impressa(s).");
     }
 
     public void imprimirQRCode(String dados, int tamanho) {
         int retorno = ImpressoraDLL.INSTANCE.ImpressaoQRCode(dados, tamanho, 2);
         if (conferir(retorno, "QR Code")) {
-            ImpressoraDLL.INSTANCE.AvancaPapel(3);
+            ImpressoraDLL.INSTANCE.Corte(4);
         }
     }
 
     public void imprimirCodigoBarras(int tipoCodigo, String dados) {
-        if (tipoCodigo == 8 && !dados.startsWith("{")) {
-            dados = "{A" + dados;
-        }
         int retorno = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(tipoCodigo, dados, 100, 2, 3);
         if (conferir(retorno, "Código de barras")) {
-            ImpressoraDLL.INSTANCE.AvancaPapel(3);
+            ImpressoraDLL.INSTANCE.Corte(4);
         }
     }
 
@@ -137,7 +134,7 @@ public class Impressora {
     }
 
     public void sinalSonoro(int quantidade) {
-        int retorno = ImpressoraDLL.INSTANCE.SinalSonoro(quantidade, 50, 5);
+        int retorno = ImpressoraDLL.INSTANCE.SinalSonoro(quantidade, 10, 5);
         conferir(retorno, "Sinal sonoro");
     }
 

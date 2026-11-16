@@ -31,13 +31,8 @@ public class Main {
                 }
                 case 6 -> {
                     if (impressora.verificarConexao()) {
-                        System.out.println("Tipos: 2 = EAN-13 | 4 = CODE 39 | 8 = CODE 128");
-                        int tipo = Entrada.lerInteiro("Tipo do código: ", 2, 8);
-                        while (tipo != 2 && tipo != 4 && tipo != 8) {
-                            System.out.println("Tipo inválido. Escolha 2, 4 ou 8.");
-                            tipo = Entrada.lerInteiro("Tipo do código: ", 2, 8);
-                        }
-                        String dados = Entrada.lerTexto("Dados do código: ");
+                        int tipo = 8;
+                        String dados = "{A12345678912";
                         impressora.imprimirCodigoBarras(tipo, dados);
                     }
                 }
@@ -60,8 +55,7 @@ public class Main {
                 }
                 case 10 -> {
                     if (impressora.verificarConexao()) {
-                        int qtd = Entrada.lerInteiro("Quantos bips (1 a 63)? ", 1, 63);
-                        impressora.sinalSonoro(qtd);
+                        impressora.sinalSonoro(5);
                     }
                 }
                 case 11 -> {
