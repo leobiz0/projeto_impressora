@@ -66,8 +66,14 @@ public class Impressora {
 
     public static void configurarConexao(Impressora impressora) {
         int tipo = Entrada.lerInteiro("Tipo (1=USB, 2=Serial, 3=Rede, 4=Bluetooth): ", 1, 4);
-        String modelo = Entrada.lerTexto("Modelo (i8 ou i9): ");
-        String conexao = Entrada.lerTexto("Conexão (USB, COM2 ou IP): ");
+        String modelo = Entrada.lerTexto("Modelo (i8 ou i9): ").trim().toLowerCase();
+        while (!modelo.matches("i8|i9")) {
+            modelo = Entrada.lerTexto("Modelo inválido. Digite i8 ou i9: ").trim().toLowerCase();
+        }
+        String conexao = Entrada.lerTexto("Conexão (USB, COM2 ou IP): ").trim().toUpperCase();
+        while (!conexao.matches("USB|COM2|\\d{1,3}(\\.\\d{1,3}){3}")) {
+            conexao = Entrada.lerTexto("Conexão inválida. Digite USB, COM2 ou IP: ").trim().toUpperCase();
+        }
         int parametro = Entrada.lerInteiro("Parâmetro (0 para USB): ", 0, 999999);
         impressora.configurar(tipo, modelo, conexao, parametro);
     }
