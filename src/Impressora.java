@@ -71,7 +71,7 @@ public class Impressora {
             modelo = Entrada.lerTexto("Modelo inválido. Digite i8 ou i9: ").trim().toLowerCase();
         }
         String conexao = Entrada.lerTexto("Conexão (USB, COM2 ou IP): ").trim().toUpperCase();
-        while (!conexao.matches("USB|COM2|\\d{1,3}(\\.\\d{1,3}){3}")) {
+        while (!conexao.matches("USB|COM2|IP")) {
             conexao = Entrada.lerTexto("Conexão inválida. Digite USB, COM2 ou IP: ").trim().toUpperCase();
         }
         int parametro = Entrada.lerInteiro("Parâmetro (0 para USB): ", 0, 999999);
@@ -108,7 +108,9 @@ public class Impressora {
         try {
             String conteudo = Files.readString(Path.of(arquivo));
             int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLSAT(conteudo, 0);
-            conferir(retorno, "Imprimir XML SAT");
+            if(conferir(retorno, "Imprimir XML SAT")){
+                ImpressoraDLL.INSTANCE.Corte(4);
+            }
         } catch (NoSuchFileException e) {
             System.out.println("Arquivo não encontrado: " + arquivo);
         } catch (IOException e) {
@@ -120,7 +122,9 @@ public class Impressora {
         try {
             String xml = Files.readString(Path.of(arquivo));
             int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLCancelamentoSAT(xml, ASS_QRCODE_CANCELAMENTO, 0);
-            conferir(retorno, "Imprimir cancelamento SAT");
+            if(conferir(retorno, "Imprimir cancelamento SAT")){
+                ImpressoraDLL.INSTANCE.Corte(4);
+            }
         } catch (NoSuchFileException e) {
             System.out.println("Arquivo não encontrado: " + arquivo);
         } catch (IOException e) {
@@ -129,7 +133,7 @@ public class Impressora {
     }
 
     public void abrirGaveta() {
-        int retorno = ImpressoraDLL.INSTANCE.AbreGaveta(1, 5, 10);
+        int retorno = ImpressoraDLL.INSTANCE.AbreGaveta(1, 5, 5);
         conferir(retorno, "Abrir gaveta");
     }
 

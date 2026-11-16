@@ -25,7 +25,7 @@ public class Main {
                 case 5 -> {
                     if (impressora.verificarConexao()) {
                         String dados = Entrada.lerTexto("Conteúdo do QR Code: ");
-                        int tamanho = Entrada.lerInteiro("Tamanho (1 a 6): ", 1, 6);
+                        int tamanho = 6;
                         impressora.imprimirQRCode(dados, tamanho);
                     }
                 }
